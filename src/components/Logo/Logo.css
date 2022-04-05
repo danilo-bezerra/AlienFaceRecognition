@@ -1,0 +1,11 @@
+.Tilt {
+    background: rgb(0,188,212);
+    background: linear-gradient(265deg, rgba(0,188,212,1) 0%, rgba(71,252,126,1) 100%);
+    padding: 12px;
+    margin-left: 1rem;
+    margin-bottom: 1.5rem;
+    width: 152px;
+    height: 152px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
