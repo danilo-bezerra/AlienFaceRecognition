@@ -1,15 +1,29 @@
 import { useState} from 'react' 
 import './App.css'
+import Register from './components/Register/Register'
 import Logo from './components/Logo/Logo'
 import Navigation from './components/Navigation/Navigation'
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Rank from './components/Rank/Rank'
+import SignIn from './components/SignIn/SignIn'
 
 function App() {
   const [input, setInput] = useState('')
   const [entries, setEntries] = useState(0)
   const [bounding, setBounding] = useState({})
+  const [route, setRoute] = useState('signin')
+  const [isActive, setIsActive] = useState(false)
+
+  function changeRoute(route) {
+    if (route === 'home') {
+      setIsActive(true)
+    } else {
+      setIsActive(false)
+    }
+
+    setRoute(route)
+  }
 
   function handleSubmit() {
     const inputUrl = document.getElementById('urlContent').value
@@ -65,11 +79,21 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
-      <Logo />
-      <Rank entries={entries}/>
-      <ImageLinkForm handleSubmit={handleSubmit} value={input} />
-      <FaceRecognition imageUrl={input} bounding={bounding}/>
+      <Navigation changeRoute={changeRoute} isActive={isActive}/>
+      {
+        route === 'home' 
+        ? <div>
+        <Logo />
+        <Rank entries={entries}/>
+        <ImageLinkForm handleSubmit={handleSubmit} value={input} />
+        <FaceRecognition imageUrl={input} bounding={bounding}/>
+      </div>
+        : (
+          route === 'signin' ? <SignIn changeRoute={changeRoute}/> : <Register changeRoute={changeRoute}/>
+        ) 
+      }
+      {/* <SignIn /> */}
+      
     </div>
   )
 }
