@@ -61,7 +61,7 @@ export default function ImageLinkForm({handleSubmit, handleInputChange, value}) 
         <FormBox>
             <Text>This magic alien will detect faces in your pictures. Give it a try</Text>
             <Form>
-                <input onChange={handleInputChange} type="text" placeholder="https://" value={value} autoFocus/>
+                <input type="url" placeholder="https://" autoFocus id='urlContent'/>
                 <button onClick={handleSubmit}>Detect</button>
             </Form>
         </FormBox>

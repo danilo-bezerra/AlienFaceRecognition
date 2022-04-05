@@ -1,7 +1,4 @@
-import { useState } from 'react';
 import alien from './alien-128.png';
-import ufo from './ufo-color.png';
-import ia from './ia-128.png';
 import './Logo.css';
 import Tilt from 'react-parallax-tilt';
 

@@ -22,6 +22,12 @@ export default function FaceRecognition({ imageUrl, bounding}) {
             bottom: ${bounding.bottom_row}px;
             border: 2px solid rgb(0, 203, 253);
         }
+
+        @media (max-width: 500px) {
+            img {
+                padding: 2%;
+            }
+        }
     `
 
 

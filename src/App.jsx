@@ -8,15 +8,13 @@ import Rank from './components/Rank/Rank'
 
 function App() {
   const [input, setInput] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
   const [entries, setEntries] = useState(0)
   const [bounding, setBounding] = useState({})
 
-  function handleInputChange({target}) {
-    setInput(target.value)
-  }
-
   function handleSubmit() {
+    const inputUrl = document.getElementById('urlContent').value
+    setInput(inputUrl)
+
     const raw = JSON.stringify({
       "user_app_id": {
         "user_id": "kbz23p0jahdt",
@@ -26,7 +24,7 @@ function App() {
         {
           "data": {
             "image": {
-              "url": input
+              "url": inputUrl
             }
           }
         }
@@ -71,7 +69,7 @@ function App() {
       <Navigation />
       <Logo />
       <Rank entries={entries}/>
-      <ImageLinkForm handleInputChange={handleInputChange} handleSubmit={handleSubmit} value={input} />
+      <ImageLinkForm handleSubmit={handleSubmit} value={input} />
       <FaceRecognition imageUrl={input} bounding={bounding}/>
     </div>
   )
