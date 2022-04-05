@@ -14,7 +14,7 @@ export default function Navigation() {
 
     return (
         <Nav>
-            <Link href="#">Sign Up</Link>
+            <Link href="#">Sign Out</Link>
         </Nav>
     )
 }

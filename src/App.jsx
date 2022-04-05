@@ -52,7 +52,6 @@ function App() {
     const ImgWidth = Number(document.getElementById('image').width)
     const ImgHeight = Number(document.getElementById('image').height)
     const {top_row, left_col, right_col, bottom_row} = response
-    console.log("original", top_row, left_col, right_col, bottom_row)
     const PositionInfo = {
       top_row : ImgHeight * top_row,
       left_col: ImgWidth  * left_col,
