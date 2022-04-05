@@ -4,8 +4,10 @@ export default function SignIn({ changeRoute }) {
     const Form = styled.form`
         max-width: 350px;
         padding: 2.5rem;
-        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        backdrop-filter: blur(2px);
         border-radius: 5px;
+        
 
         input {
             padding: .5rem;
@@ -22,7 +24,7 @@ export default function SignIn({ changeRoute }) {
 
 
     return (
-        <Form className="measure center">
+        <Form className="measure center blur">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
             <legend className="f1 fw6 ph0 mh0">Sign In</legend>
             <div className="mt3">

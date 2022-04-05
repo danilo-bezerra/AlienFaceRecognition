@@ -6,6 +6,7 @@ export default function Register({ changeRoute }) {
         padding: 2.5rem;
         box-shadow: 0 0 5px rgba(0,0,0,0.5);
         border-radius: 5px;
+        backdrop-filter: blur(2px);
 
         input {
             padding: .5rem;
