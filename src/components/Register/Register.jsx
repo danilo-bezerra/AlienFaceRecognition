@@ -1,7 +1,35 @@
 import styled from 'styled-components';
 
-export default function Register({ changeRoute }) {
-    const Form = styled.form`
+export default function Register({ changeRoute, loadUser ,setUser}) {
+    function handleSubmit() {
+        const inputName = document.getElementById('name').value;
+        const inputEmail = document.getElementById('email-address').value;
+        const inputPassword = document.getElementById('password').value;
+
+        fetch('http://localhost:3001/register', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: inputName,
+                email: inputEmail,
+                password: inputPassword
+            })
+        })
+        .then(res => {
+            if (res.status >= 200 && res.status < 400) {
+                return res.json()
+            }
+        }).then(data => {
+          if (data) {
+            changeRoute('home');
+            loadUser(data)
+          }
+          
+      })
+        
+    }
+
+    const Form = styled.div`
         max-width: 350px;
         padding: 2.5rem;
         box-shadow: 0 0 5px rgba(0,0,0,0.5);
@@ -40,7 +68,7 @@ export default function Register({ changeRoute }) {
             </div>
             </fieldset>
             <div className="">
-            <input className="w-100 b f1 ph3 pv2 input-reset ba b--black bg-black grow pointer f6 dib" type="submit" value="Register" onClick={() => changeRoute('home')}/>
+            <input className="w-100 b f1 ph3 pv2 input-reset ba b--black bg-black grow pointer f6 dib" type="submit" value="Register" onClick={handleSubmit}/>
             </div>
         </Form>
     )
