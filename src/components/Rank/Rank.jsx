@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Rank({entries}) {
+export default function Rank({entries, user}) {
     const RankText = styled.div`
         color: #fff;
         font-size: 1.5rem;
@@ -13,7 +13,7 @@ export default function Rank({entries}) {
 
     return (
         <RankText>
-            <p>{"Name"}, your current entry count is <span>#{entries}</span></p>
+            <p>{user.name}, your current entry count is <span>#{entries ?? 0}</span></p>
         </RankText>
     )
 }
