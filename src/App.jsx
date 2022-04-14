@@ -32,7 +32,8 @@ function App() {
       joined: data.joined
   })
   }
-                                function changeRoute(route) {
+
+  function changeRoute(route) {
     if (route === 'home') {
       setIsActive(true)
     } else {
@@ -42,52 +43,30 @@ function App() {
     setRoute(route)
   }
 
+  function sendImageUrl(imageUrl) {
+    fetch('http://localhost:3001/image', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: user.id,
+              imageUrl: imageUrl,
+            })
+        })
+        .then(res => {
+                return res.json()
+        }).then(data => {
+          if (data) {
+            handleResponse(data)
+            console.log('bouding do app.jsx', data)
+          }
+          
+      })
+  }
+
   function handleSubmit() {
     const inputUrl = document.getElementById('urlContent').value
+    sendImageUrl(inputUrl)
     setInput(inputUrl)
-
-    const raw = JSON.stringify({
-      "user_app_id": {
-        "user_id": "kbz23p0jahdt",
-        "app_id": "5ad55bbcbd5b4ff9ac88075c9bbe50c5"
-      },
-      "inputs": [
-        {
-          "data": {
-            "image": {
-              "url": inputUrl
-            }
-          }
-        }
-      ]
-    });
-    
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Key de76828d0f9c46fbb60870c7f9a1e45d'
-      },
-      body: raw
-    };
-
-    fetch("https://api.clarifai.com/v2/models/face-detection/versions/45fb9a671625463fa646c3523a3087d5/outputs", requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        fetch("http://localhost:3001/image", {
-          method: 'put',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            id: user.id
-          })
-        }).then(res => res.json())
-          .then(count => {
-            console.log(count)
-            setEntries(count)
-          })
-        handleResponse(JSON.parse(result).outputs[0].data.regions[0].region_info.bounding_box)
-      })
-      .catch(error => alert("Link invalido"));
   }
 
   function handleResponse(response) {
@@ -101,7 +80,7 @@ function App() {
       right_col: ImgWidth * (right_col - 1) * -1
 
     } 
-    setEntries(entries + 1)
+    setEntries(Number(entries) + 1)
     setBounding(PositionInfo)
   }
 

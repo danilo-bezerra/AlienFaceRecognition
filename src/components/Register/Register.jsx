@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Register({ changeRoute, loadUser ,setUser}) {
+export default function Register({ changeRoute, loadUser}) {
     function handleSubmit() {
         const inputName = document.getElementById('name').value;
         const inputEmail = document.getElementById('email-address').value;
